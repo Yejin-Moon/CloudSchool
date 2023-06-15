@@ -1,4 +1,4 @@
-package JAVA.day02;
+package day02;
 
 class Calculator {
     double result=0;

@@ -1,4 +1,4 @@
-package JAVA.day02;
+package day02;
 
 class Card {
     String kind;
