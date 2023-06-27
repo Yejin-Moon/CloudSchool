@@ -58,7 +58,54 @@ public class BookPjt {
 			}
 		}
     }
-    public void NewBook() {}
+    public void NewBook() {
+        try{
+		if(iBookLength>=MAX_BOOK_LENGTH) {
+			System.out.println("Full!");
+			return;
+		}
+		String tName, tAuthor;
+		int tPage, tGenre;
+		
+		System.out.println("책 이름을 입력하세요: ");	
+		tName = br.readLine();
+		System.out.println("책 페이지수를 입력하세요: ");	
+		tPage = Integer.valueOf(br.readLine());
+		System.out.println("작가 이름을 입력하세요: ");	
+		tAuthor = br.readLine();
+		System.out.println("책의 장르를 선택하세요 - 1.소설 2.SF 3. essay");	
+		tGenre = Integer.valueOf(br.readLine());
+		
+		
+		for(int i=0; i<iBookLength; i++) {
+			if(BookList[i].getName().equals(tName)) {
+				System.out.println("이미 존재합니다.");
+				return;
+			}
+		}
+		
+		Book book;
+		switch(tGenre) {
+			case 1:
+				book = new Novel(tName, tAuthor, tPage);
+				break;
+			case 2:
+				book = new SF(tName, tAuthor, tPage);
+				break;
+			case 3:
+				book = new essay(tName, tAuthor, tPage);
+				break;
+			default:
+				System.out.println("Error!");
+				return;
+		}
+		
+		BookList[iBookLength++] = book;
+		} catch (IOException e) {
+			System.out.println("IOException");
+			return;
+		}
+    }
     public void DeleteBook() {}
     public void SearchBook() {}
     public void PrintBook() {}
