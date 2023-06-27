@@ -109,3 +109,27 @@ class Novel extends Book {
 		sGenre = "Novel";
 	}	
 }
+
+class SF extends Book {
+
+	public SF(String name, String author, int page) {
+		super(name, author, page);
+	}
+
+	@Override
+	void setGenre() {
+		sGenre = "SF";
+	}	
+}
+
+class essay extends Book {
+
+	public essay(String name, String author, int page) {
+		super(name, author, page);
+	}
+
+	@Override
+	void setGenre() {
+		sGenre = "essay";
+	}	
+}
