@@ -106,9 +106,60 @@ public class BookPjt {
 			return;
 		}
     }
-    public void DeleteBook() {}
-    public void SearchBook() {}
-    public void PrintBook() {}
+    public void DeleteBook() {
+		if(iBookLength<1) {
+			System.out.println("책이 하나도 없습니다.");
+			return;
+		}
+		try {
+		System.out.println("삭제하려는 책 제목을 입력하세요 : ");
+		String target = br.readLine();
+		for(int i=0; i<iBookLength; i++) {
+			if(BookList[i].sName.equals(target)) {
+				for(int j=i; j<iBookLength-1; j++) {
+					BookList[j] = BookList[j+1];
+				}
+			}
+		}
+		iBookLength--;
+		}catch (IOException e) {
+			System.out.println("Error!");
+		}
+	}
+    public void SearchBook() {
+		try {
+				boolean flag=false;
+				System.out.println("찾으려는 책 제목을 입력하세요 : ");
+				String target = br.readLine();
+				for(int i=0; i<iBookLength; i++) {
+					if(target.equals(BookList[i].sName)) {
+						System.out.println("책을 찾았습니다. 책 정보입니다.");
+						System.out.println("제 목 : "+BookList[i].sName);
+						System.out.println("작 가 : "+BookList[i].sAuthor);
+						System.out.println("페이지 : "+BookList[i].iPage);
+						System.out.println("장 르 : "+BookList[i].sGenre);
+						flag=true;
+					}
+				}
+				if(!flag) System.out.println("찾지 못했습니다.");
+			}catch (IOException e){
+				System.out.println("Error!");
+			}
+	}
+    public void PrintBook() {
+		if(iBookLength<1) {
+			System.out.println("책이 하나도 없습니다.");
+			return;
+		}
+		for(int i=0; i<iBookLength; i++) {
+			System.out.println((i+1)+"번 책 정보");
+			System.out.println("제 목 : "+BookList[i].sName);
+			System.out.println("작 가 : "+BookList[i].sAuthor);
+			System.out.println("페이지 : "+BookList[i].iPage);
+			System.out.println("장 르 : " +BookList[i].sGenre);
+			System.out.println();
+		}	
+	}
 }
 
 
