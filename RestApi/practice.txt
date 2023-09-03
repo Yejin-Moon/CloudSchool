@@ -1,0 +1,2 @@
+RestApi를 이용해서 GET, POST, PUT, DELETE가 가능하도록 설계
+프론트엔드가 개발되지 않은 상태라 POST MAN으로 확인 가능
