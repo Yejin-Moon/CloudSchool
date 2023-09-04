@@ -41,4 +41,12 @@ public class PostingController {
                 .build();
     }
 
+    @GetMapping("/api/postings/{id}")
+    public ResponseEntity<PostingResponse> findPosting(@PathVariable int id) {
+        Posting posting = postService.findById(id);
+
+        return ResponseEntity.ok()
+                .body(new PostingResponse(posting));
+    }
+
 }
