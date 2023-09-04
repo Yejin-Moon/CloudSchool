@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>나의 게시판</h1>
+    <div id="con"></div>
+
+    <script>
+        let data = [];
+        var cbody = document.getElementById("con");
+        cbody.innerHTML = '';
+
+        function renderPage(data) {
+            var cc = document.getElementById("con");
+
+            const endIdx = data.length;
+            for(let key=0; key<endIdx; key++) {
+                var cid = data[key]['id'];
+                var cname = data[key]['name'];
+                var ccon = data[key]['content'];
+                var ctit = data[key]['title'];
+                var ccnt = data[key]['view_cnt'];
+
+                var col = document.createElement("h5");
+                var col2 = document.createElement("h5");
+                var col3 = document.createElement("h5");
+                var col4 = document.createElement("h5");
+                var col5 = document.createElement("h5");
+
+                var card = document.createElement("div");
+                col.innerText = cid;
+                col2.innerText = "작성자 : " + cname;
+                col3.innerText = "내용 : " +ccon;
+                col4.innerText = "제목 : " +ctit;
+                col5.innerText = "조회수 : " +ccnt;
+                card.appendChild(col);
+                card.appendChild(col2);
+                card.appendChild(col4);
+                card.appendChild(col3);
+                card.appendChild(col5);
+
+                var btn = document.createElement("button");
+                var txt = document.createTextNode("자세히 보기");
+                btn.appendChild(txt);
+                btn.setAttribute("id",cid);
+                const bid = btn.id;
+                btn.addEventListener('click', () => {
+
+                    window.location = `http://localhost:8080/api/postings/${bid}`;
+                })
+                card.appendChild(btn);
+                cbody.appendChild(card);
+            }
+        }
+
+        (async () => {
+            var url = "http://localhost:8080/api/postings";
+            data = await fetch(url).then(response => response.json());
+            renderPage(data);
+        })();
+    </script>
+</body>
+</html>

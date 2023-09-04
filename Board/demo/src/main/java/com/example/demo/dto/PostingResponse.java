@@ -7,10 +7,12 @@ public class PostingResponse {
     private final String name;
     private final String title;
     private final String content;
+    private final int view_cnt;
 
     public PostingResponse(Posting posting) {
         this.name=posting.getName();
         this.title=posting.getTitle();
         this.content= posting.getContent();
+        this.view_cnt=posting.getView_cnt();
     }
 }

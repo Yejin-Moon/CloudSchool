@@ -24,16 +24,25 @@ public class Posting {
     @Column(length = 100, nullable = false)
     private String title;
 
+    @Column(length = 11)
+    private int view_cnt;
+
     @Builder
-    public Posting(String name, String content, String title) {
+    public Posting(String name, String content, String title, int view_cnt) {
         this.name=name;
         this.content=content;
         this.title=title;
+        this.view_cnt=view_cnt;
     }
 
-    public void update(String name, String content, String title) {
+    public void update(String name, String content, String title, int view_cnt) {
         this.name=name;
         this.content=content;
         this.title=title;
+        this.view_cnt=view_cnt;
+    }
+
+    public void increaseCnt() {
+        this.view_cnt++;
     }
 }

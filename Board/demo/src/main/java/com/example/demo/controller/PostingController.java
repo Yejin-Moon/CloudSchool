@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.AddPostingRequest;
 import com.example.demo.dto.PostingResponse;
+import com.example.demo.dto.UpdatePostingRequest;
 import com.example.demo.entity.Posting;
 import com.example.demo.repository.PostingRepository;
 import com.example.demo.service.PostService;
@@ -28,7 +29,6 @@ public class PostingController {
     @PostMapping("/api/postings")
     public ResponseEntity<Posting> addPosting(@RequestBody AddPostingRequest request) {
         Posting savedPosting = postService.save(request);
-
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(savedPosting);
     }
@@ -43,10 +43,24 @@ public class PostingController {
 
     @GetMapping("/api/postings/{id}")
     public ResponseEntity<PostingResponse> findPosting(@PathVariable int id) {
-        Posting posting = postService.findById(id);
+        Posting posting = null;
+        try {
+            posting = postService.getPost(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         return ResponseEntity.ok()
                 .body(new PostingResponse(posting));
+    }
+
+    @PutMapping("/api/postings/{id}")
+    public ResponseEntity<Posting> updatePosting(@PathVariable int id,
+                                                 @RequestBody UpdatePostingRequest request) {
+        Posting updatedPosting = postService.update(id,request);
+
+        return ResponseEntity.ok()
+                .body(updatedPosting);
     }
 
 }
