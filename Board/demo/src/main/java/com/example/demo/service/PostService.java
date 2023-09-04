@@ -15,5 +15,7 @@ public class PostService {
         return postingRepository.save(request.toEntity());
     }
 
-
+    public void delete(int id) {
+        postingRepository.deleteById(id);
+    }
 }

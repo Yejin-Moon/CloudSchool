@@ -32,4 +32,13 @@ public class PostingController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(savedPosting);
     }
+
+    @DeleteMapping("/api/postings/{id}")
+    public ResponseEntity<Void> deletePosting(@PathVariable int id) {
+        postService.delete(id);
+
+        return ResponseEntity.ok()
+                .build();
+    }
+
 }
