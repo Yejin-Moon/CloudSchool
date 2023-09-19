@@ -1,0 +1,3 @@
+jwt:
+  issuer: boraborafeel@gmail.com
+  secret_key: study-springboot
